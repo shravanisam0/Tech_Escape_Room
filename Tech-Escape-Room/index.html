@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Escape Room</title>
+    <!-- Cyberpunk fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- GAME TIMER -->
+    <div id="timerBox" style="display: none;">
+        TIME LEFT: <span id="timer">30:00</span>
+    </div>
+
+    <!-- START SCREEN -->
+    <div class="container" id="startScreen">
+        <div class="lock">🔒</div>
+
+        <h1>SYSTEM LOCKED</h1>
+
+        <p class="warning">SECURITY BREACH DETECTED</p>
+
+        <p class="message">
+            You are trapped inside the system.
+            <br>
+            Complete all security levels before time runs out.
+        </p>
+
+        <div class="rules-box">
+            <h3>⚠ ESCAPE PROTOCOL</h3>
+            <p>⏱ TIME LIMIT: 30 MINUTES</p>
+            <p>🔐 CLEAR ALL 5 SECURITY LEVELS</p>
+            <p>💡 MAXIMUM 2 HINTS</p>
+            <p>⚠ EACH HINT: +5 MIN PENALTY</p>
+            <p>🚫 LEAVING THE GAME: DISQUALIFICATION</p>
+        </div>
+
+        <!-- TEAM REGISTRATION -->
+        <div id="teamSection" class="team-section">
+            <p class="warning" style="margin-bottom: 8px;">OPERATIVE / TEAM IDENTIFIER</p>
+            <div class="input-wrap" id="teamInputWrap">
+                <input type="text" id="teamNameInput" placeholder="ENTER TEAM NAME" maxlength="30" autocomplete="off" autofocus>
+            </div>
+            <p id="teamNameError" class="team-error"></p>
+        </div>
+
+        <button id="startBtn">START ESCAPE</button>
+        <br><br>
+
+        <button id="resumeBtn" style="display: none;">
+            ▶ RESUME GAME
+        </button>
+
+        <p id="resumeMessage" class="message" style="display: none;">
+            ⚡ SAVED GAME DETECTED
+            <br>
+            Previous session was interrupted.
+        </p>
+    </div>
+
+
+    <!-- LEVEL 1 -->
+    <div class="container" id="level1" style="display: none;">
+        <div class="progress-info">
+            <span>SYSTEM BREACH PROGRESS</span>
+            <span>1 / 5</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 20%;"></div>
+        </div>
+
+        <p class="warning">LEVEL 01</p>
+
+        <h1 id="level1-title"></h1>
+
+        <p class="message" id="level1-message"></p>
+
+        <!-- Filled dynamically: either an <h2> or a code-box <pre> -->
+        <div id="level1-display"></div>
+
+        <p class="message" id="level1-footer"></p>
+
+        <br>
+
+        <div class="input-wrap">
+            <input type="text" id="answer1" autocomplete="off">
+        </div>
+
+        <br><br>
+
+        <button id="submit1">UNLOCK</button>
+
+        <br><br>
+
+        <button id="hint1" class="hint-btn">💡 USE HINT</button>
+
+        <p id="hintText1" class="hint-text"></p>
+        <p id="result1"></p>
+
+    </div>
+
+    <!-- LEVEL 2 -->
+    <div class="container" id="level2" style="display: none;">
+        <div class="progress-info">
+            <span>SYSTEM BREACH PROGRESS</span>
+            <span>2 / 5</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 40%;"></div>
+        </div>
+
+        <p class="warning">LEVEL 02</p>
+
+        <h1 id="level2-title"></h1>
+
+        <p class="message" id="level2-message"></p>
+
+        <div id="level2-display"></div>
+
+        <p class="message" id="level2-footer"></p>
+
+        <div class="input-wrap">
+            <input type="text" id="answer2" autocomplete="off">
+        </div>
+
+        <br><br>
+
+        <button id="submit2">UNLOCK</button>
+        <br><br>
+
+        <button id="hint2" class="hint-btn">💡 USE HINT</button>
+        <p id="hintText2" class="hint-text"></p>
+        <p id="result2"></p>
+
+    </div>
+
+    <!-- LEVEL 3 -->
+    <div class="container" id="level3" style="display: none;">
+        <div class="progress-info">
+            <span>SYSTEM BREACH PROGRESS</span>
+            <span>3 / 5</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 60%;"></div>
+        </div>
+
+        <p class="warning">LEVEL 03</p>
+
+        <h1 id="level3-title"></h1>
+
+        <p class="message" id="level3-message"></p>
+
+        <div id="level3-display"></div>
+
+        <p class="message" id="level3-footer"></p>
+
+        <div class="input-wrap">
+            <input type="text" id="answer3" autocomplete="off">
+        </div>
+
+        <br><br>
+
+        <button id="submit3">UNLOCK VAULT</button>
+        <br><br>
+
+        <button id="hint3" class="hint-btn">💡 USE HINT</button>
+        <p id="hintText3" class="hint-text"></p>
+        <p id="result3"></p>
+
+    </div>
+
+    <!-- LEVEL 4 -->
+    <div class="container" id="level4" style="display: none;">
+        <div class="progress-info">
+            <span>SYSTEM BREACH PROGRESS</span>
+            <span>4 / 5</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 80%;"></div>
+        </div>
+
+        <p class="warning">LEVEL 04</p>
+
+        <h1 id="level4-title"></h1>
+
+        <p class="message" id="level4-message"></p>
+
+        <div id="level4-display"></div>
+
+        <p class="message" id="level4-footer"></p>
+
+        <div class="input-wrap">
+            <input type="text" id="answer4" autocomplete="off">
+        </div>
+
+        <br><br>
+
+        <button id="submit4">UNLOCK</button>
+        <br><br>
+
+        <button id="hint4" class="hint-btn">💡 USE HINT</button>
+        <p id="hintText4" class="hint-text"></p>
+        <p id="result4"></p>
+
+    </div>
+
+    <!-- LEVEL 5 -->
+    <div class="container" id="level5" style="display: none;">
+        <div class="progress-info">
+            <span>SYSTEM BREACH PROGRESS</span>
+            <span>5 / 5</span>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%;"></div>
+        </div>
+
+        <p class="warning">LEVEL 05</p>
+
+        <h1 id="level5-title"></h1>
+
+        <p class="message" id="level5-message"></p>
+
+        <div id="level5-display"></div>
+
+        <p class="message" id="level5-footer"></p>
+
+        <div class="input-wrap">
+            <input type="text" id="answer5" autocomplete="off">
+        </div>
+
+        <br><br>
+
+        <button id="submit5">VERIFY &amp; UNLOCK</button>
+        <br><br>
+
+        <button id="hint5" class="hint-btn">💡 USE HINT</button>
+        <p id="hintText5" class="hint-text"></p>
+        <p id="result5"></p>
+
+    </div>
+
+    <!-- FINAL EXIT -->
+    <div class="container" id="finalLevel" style="display: none;">
+
+        <p class="warning">FINAL SECURITY LOCK</p>
+
+        <h1>FINAL DECRYPTION</h1>
+
+        <p class="message">
+            The system remembers every lock you broke.
+            Decode the clues and generate the final exit code.
+        </p>
+
+        <!-- Clues are injected dynamically from each question's finalClue -->
+        <div class="code-box">
+            <pre id="finalCluesDisplay"></pre>
+        </div>
+
+        <div class="input-wrap">
+            <input type="password" id="finalCode" placeholder="Enter final exit code" maxlength="5" autocomplete="off">
+        </div>
+
+        <br><br>
+
+        <button id="finalBtn">UNLOCK SYSTEM</button>
+
+        <p id="finalResult"></p>
+
+    </div>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="container" id="successScreen" style="display: none;">
+
+        <div class="lock">🔓</div>
+
+        <h1>SYSTEM UNLOCKED</h1>
+
+        <p class="message">
+            All security levels have been successfully cleared.
+            <br><br>
+            YOU ESCAPED THE SYSTEM!
+        </p>
+
+        <h2 id="teamNameDisplay"></h2>
+        <h2 id="escapeTime"></h2>
+        <p id="hintsUsedDisplay"></p>
+        <p id="penaltyDisplay"></p>
+
+        <h2 id="finalTime"></h2>
+        <br>
+        <h2>MISSION ACCOMPLISHED ✓</h2>
+
+    </div>
+
+    <!-- Question banks (plain JS, no modules) -->
+    <script src="questions/level1.js"></script>
+    <script src="questions/level2.js"></script>
+    <script src="questions/level3.js"></script>
+    <script src="questions/level4.js"></script>
+    <script src="questions/level5.js"></script>
+
+    <script src="plexus-bg.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
